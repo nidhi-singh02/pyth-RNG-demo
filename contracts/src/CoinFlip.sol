@@ -4,8 +4,18 @@ pragma solidity ^0.8.13;
 import "@pythnetwork/entropy-sdk-solidity/IEntropy.sol";
 import "@pythnetwork/entropy-sdk-solidity/IEntropyConsumer.sol";
 
+/// Example contract using Pyth Entropy to allow a user to flip a secure fair coin.
+/// Users interact with the contract by requesting a random number from the entropy provider.
+/// The entropy provider will then fulfill the request by revealing their random number.
+/// Once the provider has fulfilled their request the entropy contract will call back
+/// the requesting contract with the generated random number.
+///
+/// The CoinFlip contract implements the IEntropyConsumer interface imported from the Solidity SDK.
+/// The interface helps in integrating with Entropy correctly.
 contract CoinFlip is IEntropyConsumer {
+    // Event emitted when a coin flip is requested. The sequence number can be used to identify a request
     event FlipRequested(uint64 sequenceNumber);
+    // Event emitted when the result of the coin flip is known.
     event FlipResult(uint64 sequenceNumber, bool isHeads);
 
     IEntropy entropy;
