@@ -24,12 +24,13 @@ async function main() {
 
     // Generate user random number
     const userRandomNumber = web3.utils.randomHex(32);
+    console.log(`user random : ${userRandomNumber}`);
 
     const fee = await entropyContract.methods.getFee(process.env["PROVIDER_ADDRESS"]).call()
     console.log(`fee         : ${fee}`);
 
     const requestReceipt = await coinFlipContract.methods
-        .request(userRandomNumber)
+        .requestRandomNumber(userRandomNumber)
         .send({
             value: fee,
             from: address,
