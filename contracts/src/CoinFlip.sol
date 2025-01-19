@@ -44,6 +44,7 @@ contract CoinFlip is IEntropyConsumer {
         emit FlipRequested(sequenceNumber);
     }
 
+    // This method is required by the IEntropyConsumer Interface
     function entropyCallback(
         uint64 sequenceNumber,
         // If your app uses multiple providers, you can use this argument

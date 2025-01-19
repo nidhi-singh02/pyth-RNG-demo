@@ -30,7 +30,7 @@ async function main() {
     console.log(`fee         : ${fee}`);
 
     const requestReceipt = await coinFlipContract.methods
-        .requestRandomNumber(userRandomNumber)
+        .request(userRandomNumber)
         .send({
             value: fee,
             from: address,
