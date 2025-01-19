@@ -3,14 +3,16 @@
 ### Build
 
 ```shell
-$ forge build
+forge build
 ```
 
 ### Format
 
 ```shell
-$ forge fmt
+forge fmt
 ```
+
+## Setup for Demo
 
 ```bash
 export ADDRESS=<your address>
@@ -50,14 +52,14 @@ export USER_RANDOM=$(cast keccak "$(date)")
 cast send  --private-key $PRIVATE_KEY $COINFLIP_ADDRESS --rpc-url $RPC_URL "request(bytes32)" $USER_RANDOM --value $FEE_DEC
 ```
 
-## Information about transaction (Optional)
+### Information about transaction (Optional)
 ```bash
 cast tx txHash --rpc-url $RPC_URL
 
 cast receipt YOUR_TX_HASH --rpc-url $RPC_URL --json
 ```
 
-## Processing to understand the result
+### Processing to understand the result
 
 ```bash
 CURRENT_BLOCK=$(cast block-number --rpc-url $RPC_URL)
@@ -66,10 +68,11 @@ START_BLOCK=$((CURRENT_BLOCK - 1000))
 cast logs --address $COINFLIP_ADDRESS --rpc-url $RPC_URL --from-block $START_BLOCK --to-block $CURRENT_BLOCK
 ```
 
-In the result, the "data" field of second topic has something similiar to "data: 0x000000000000000000000000000000000000000000000000000000000002bc180000000000000000000000000000000000000000000000000000000000000000"
+In the result, the "data" field of second topic has something similiar to `"data: 0x000000000000000000000000000000000000000000000000000000000002bc180000000000000000000000000000000000000000000000000000000000000000"`
 
 The first 32 bytes represents the sequence number and next 32 bytes represents the result of coin flip (boolean)
 
+## Interact with contract - via application - Second way 
 To see the second method to interact with the smart contract through the application, go to "app" folder and follow its README.md.
 
 Feel free to pick whatever interaction works best for you. 
